@@ -7,12 +7,14 @@ import store from "./store";
 import App from './components/app';
 import ErrorBoundry from "./components/error-boundry";
 import { ServiceProvider } from './components/service-context';
+import BankService from './bank-service';
 
+const bankService = new BankService()
 
 ReactDOM.render(
   <Provider store={store}>
     <ErrorBoundry>
-      <ServiceProvider>
+      <ServiceProvider value={bankService}>
         <App />
       </ServiceProvider>
     </ErrorBoundry>
