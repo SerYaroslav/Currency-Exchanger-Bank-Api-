@@ -12,5 +12,12 @@ const onAmountChanged = inpValue => {
   }
 }
 
+const onDateSwitched = dateName => {
+  return {
+    type: "ON_DATE_SWITCHED",
+    payload: dateName,
+  };
+}
 
-export { onCurrencyChanged, onAmountChanged };
+
+export { onCurrencyChanged, onAmountChanged, onDateSwitched };

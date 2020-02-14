@@ -1,6 +1,6 @@
 const initialState = {
   currencyCode: 'USD',
-  dateRate: 'today',
+  dates: [],
   amount: '',
 };
 
@@ -9,14 +9,31 @@ const reducer = (state = initialState, action) => {
     case "ON_CURRENCY_CHANGED":
       return {
         ...state,
-        currencyCode: action.payload,
+        currencyCode: action.payload
       };
 
     case "ON_AMOUNT_CHANGED":
-      return{
+      return {
         ...state,
-        amount: action.payload,
+        amount: action.payload
       };
+
+    case "ON_DATE_SWITCHED":
+      const switchedDate = action.payload;
+      const currentDates = state.dates;
+      const idx = currentDates.findIndex((item) => item === switchedDate);
+
+      if (idx >= 0) {
+        return {
+          ...state,
+          dates: [...currentDates.slice(0, idx), ...currentDates.slice(idx + 1)]
+        };
+      } else {
+        return {
+          ...state,
+          dates: [...currentDates, switchedDate]
+        };
+      }
 
     default:
       return state;
