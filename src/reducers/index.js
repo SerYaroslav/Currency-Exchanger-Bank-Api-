@@ -2,7 +2,7 @@ const initialState = {
   currencyCode: "USD",
   dates: [],
   amount: "",
-  exchangeItems: null,
+  exchangeItems: [],
   loading: false,
   error: null,
 };
@@ -18,15 +18,18 @@ const reducer = (state = initialState, action) => {
       }
 
     case "FETCH_RATE_DATA_SUCCESS":
+      const initExch = state.exchangeItems;
+      const newExch = action.payload;
       return {
         ...state,
-        exchangeItems: action.payload,
+        exchangeItems: [...initExch, newExch],
         loading: false,
         error: null
       };
 
     case "FETCH_RATE_DATA_FAILURE":
       return {
+        ...state,
         exchangeItems:[],
         loading:false,
         error: action.payload,

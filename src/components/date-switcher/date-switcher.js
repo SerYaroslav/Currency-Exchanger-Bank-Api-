@@ -6,6 +6,7 @@ import {onDateSwitched} from "../../actions";
 import "./date-switcher.scss";
 
 const DateSwitcher = ({ dates, onDateSwitched }) => {
+  console.log(dates)
   return (
     <form>
       <div className="form-check">

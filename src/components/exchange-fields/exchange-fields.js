@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from "react";
 
 import withBankService  from "../hoc";
 
@@ -7,75 +7,71 @@ import { connect } from 'react-redux';
 
 import Spinner from '../spinner';
 
-import { rateDataLoaded, rateDataRequested,} from "../../actions";
+import { rateDataLoaded, rateDataRequested, testFetchRate} from "../../actions";
 
 import BankService from '../../bank-service';
+import { bindActionCreators } from 'redux';
 
 class ExchangeFields extends Component {
-   componentDidMount() {
-    /* const { bankService } = this.props;
-    const { currencyCode, dates, amount, exchangeItems } = this.props;
-    
-    
-  bankService
-    .getRate("EUR", "today")
-    .then(data => rateDataLoaded(data))
-    .then(data => console.log(data));  */
-    this.updateRate()
+  componentWillMount() {
+    const {
+      fetchRate,
+      bankService,
+      dates,
+      exchangeItems,
+      currencyCode
+    } = this.props;
+    console.log(dates, exchangeItems);
+    fetchRate(currencyCode, dates, bankService);
+    console.log(dates, exchangeItems);
   }
-  
-  testBankService = new BankService();
-
-  updateRate = () => {
-    this.testBankService
-      .getRate("EUR", "today")
-      .then(rateDataLoaded());
-  }
-  
-  testFunc=(data)=>{
-    return data;
-  }
+  useEffect(() => {document.title = `You clicked ${count} times`;})
+  useEffect(() => {
+    const {
+      fetchRate,
+      bankService,
+      dates,
+      exchangeItems,
+      currencyCode
+    } = this.props;
+    if (
+      this.props.currencyCode !== prevProps.currencyCode ||
+      this.props.dates !== prevProps.dates ||
+      this.props.exchangeItems !== prevProps.exchangeItems
+    ) {
+      console.log(dates, exchangeItems);
+      fetchRate(currencyCode, dates, bankService);
+      console.log(dates, exchangeItems);
+    }
+  })
 
   render() {
-    const { currencyCode, dates, amount, exchangeItems, loading } = this.props;
-
-    if (loading) {
-      return <Spinner />;
-    }
-    console.log(exchangeItems);
-    console.log(currencyCode);
-    console.log(dates);
-    console.log(amount);
-    console.log(loading);
-    return <div>{this.testFunc('test')}</div>;
+    const {
+      currencyCode,
+      dates,
+      amount,
+      exchangeItems,
+      loading,
+      error
+    } = this.props;
+    return (
+      <div>
+        {currencyCode}
+        {exchangeItems}
+      </div>
+    );
   }
 }
 
-const mapStateToProps = ({
-  currencyCode,
-  dates,
-  amount,
-  exchangeItems,
-  loading
-}) => {
-  return {
-    currencyCode,
-    dates,
-    amount,
-    exchangeItems,
-    loading
-  };
+const mapStateToProps = ({ currencyCode, dates, amount, exchangeItems, loading, error }) => {
+  return { currencyCode, dates, amount, exchangeItems, loading, error };
 };
 
-
-const mapDispatchToProps = dispatch => {
-  return {
-    rateDataRequested,
-    rateDataLoaded: data => dispatch(rateDataLoaded(data))
-  };
-  
-};
+const mapDispatchToProps = daspatch => bindActionCreators({
+  fetchRate: testFetchRate
+}, daspatch)
 
 
-
-export default withBankService()(connect(mapStateToProps,mapDispatchToProps)(ExchangeFields));
+export default withBankService()(
+  connect(mapStateToProps, mapDispatchToProps)(ExchangeFields)
+);

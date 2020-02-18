@@ -49,6 +49,22 @@ const fetchRateData = (bankService, dispatch) => (valcode, fromWhen) => {
     .catch(err => dispatch(rateDataError(err)));
 };
 
+const testFetchRate = (valcode, fromWhen, bankService) => {
+  return dispatch => {
+    dispatch(rateDataRequested());
+    bankService.getRate(valcode, fromWhen) 
+      .then(res => {
+        if (res.error) {
+          throw res.error;
+        }
+        dispatch(rateDataLoaded(res.name));
+        return res;
+      })
+      .catch(error => {
+        dispatch(rateDataError(error));
+      });
+  };
+}
 
 export {
   onCurrencyChanged,
@@ -56,5 +72,6 @@ export {
   onDateSwitched,
   fetchRateData,
   rateDataRequested,
-  rateDataLoaded
+  rateDataLoaded,
+  testFetchRate
 };
