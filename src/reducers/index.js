@@ -1,11 +1,37 @@
 const initialState = {
-  currencyCode: 'USD',
+  currencyCode: "USD",
   dates: [],
-  amount: '',
+  amount: "",
+  exchangeItems: null,
+  loading: false,
+  error: null,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+
+    case "FETCH_RATE_DATA_REQUESTED":
+      return{
+        ...state,
+        loading:true,
+        error:null,
+      }
+
+    case "FETCH_RATE_DATA_SUCCESS":
+      return {
+        ...state,
+        exchangeItems: action.payload,
+        loading: false,
+        error: null
+      };
+
+    case "FETCH_RATE_DATA_FAILURE":
+      return {
+        exchangeItems:[],
+        loading:false,
+        error: action.payload,
+      };
+
     case "ON_CURRENCY_CHANGED":
       return {
         ...state,

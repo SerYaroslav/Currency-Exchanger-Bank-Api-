@@ -59,7 +59,17 @@ export default class BankService {
     const dateCode = this.getDateCode(date, fromWhen);
     console.log(dateCode);
     const res = await this.getResourse(`valcode=${valcode}&date=${dateCode}`);
-    return res;
+    return this._transformRate(res);
   };
+
+
+  _transformRate = (rate) => {
+    return {
+      name: rate[0].txt,
+      rate: rate[0].rate,
+      currencyCode: rate[0].cc,
+      exchangeDate: rate[0].exchangedate
+    };
+  }
 
 };

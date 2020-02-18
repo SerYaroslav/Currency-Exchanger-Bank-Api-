@@ -5,9 +5,11 @@ const withBankService = () => Wrapped => {
   return props => {
     return (
       <ServiceConsumer>
-        {bankService => {
+        {
+        bankService => {
           return <Wrapped {...props} bankService={bankService} />;
-        }}
+        }
+        }
       </ServiceConsumer>
     );
   };
