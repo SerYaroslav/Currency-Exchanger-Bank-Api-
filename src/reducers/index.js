@@ -1,10 +1,10 @@
 const initialState = {
   currencyCode: "USD",
-  dates: [],
+  dates: ["today", "7 days ago", "30 days ago"],
   amount: "",
   exchangeItems: [],
-  loading: false,
-  error: null,
+  loading: true,
+  error: null
 };
 
 const reducer = (state = initialState, action) => {

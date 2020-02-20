@@ -1,4 +1,5 @@
 
+
 const rateDataRequested = () => {
   return {
     type: "FETCH_RATE_DATA_REQUESTED"
@@ -57,7 +58,10 @@ const testFetchRate = (valcode, fromWhen, bankService) => {
         if (res.error) {
           throw res.error;
         }
-        dispatch(rateDataLoaded(res.name));
+        dispatch(rateDataLoaded(res));
+        /* dispatch(rateDataLoaded(res.rate));
+        dispatch(rateDataLoaded(res.currencyCode)); */
+        
         return res;
       })
       .catch(error => {
