@@ -1,25 +1,19 @@
-import React, { Component, useEffect } from "react";
+import React from "react";
 
 import withBankService  from "../hoc";
 
 import './exchange-fields'
 import { connect } from 'react-redux';
 
-import Spinner from '../spinner';
 import ExhangeFieldsItem from "../exhange-fields-item";
 
-import { rateDataLoaded, rateDataRequested, testFetchRate} from "../../actions";
+const ExchangeFields = ({dates}) => {
 
-import BankService from '../../bank-service';
-import { bindActionCreators } from 'redux';
-
-const ExchangeFields = ({
-  dates
-}) => {
-return(
-  dates.map((date, idx) => {
-    return <ExhangeFieldsItem date={date} idx={idx} key={idx} />;
-  }))
+  return(
+    dates.map((date, idx) => {
+      return <ExhangeFieldsItem date={date} idx={idx} key={idx} />;
+    })
+  );
 };
 
 const mapStateToProps = ({
@@ -27,8 +21,6 @@ const mapStateToProps = ({
 }) => {
   return {  dates };
 };
-
-
 
 export default withBankService()(
   connect(mapStateToProps, null)(ExchangeFields)

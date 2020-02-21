@@ -1,5 +1,5 @@
 const initialState = {
-  currencyCode: "",
+  currencyCode: "USD",
   dates: [],
   amount: "",
   exchangeItems: [],
@@ -54,18 +54,21 @@ const reducer = (state = initialState, action) => {
       const currentDates = state.dates;
       const currentExchItem = state.exchangeItems;
       const idx = currentDates.findIndex((item) => item === switchedDate);
-      const idxExchItem = currentExchItem.findIndex(
+      /* const idxExchItem = currentExchItem.findIndex(
         item => item.settedDate === switchedDate
-      );
+      ); */
 
-      if (idx >= 0 && idxExchItem >= 0) {
+      if (idx >= 0) {
         return {
           ...state,
           dates: [
             ...currentDates.slice(0, idx),
             ...currentDates.slice(idx + 1)
           ],
-          exchangeItems: [...currentExchItem.slice(0, idxExchItem), ...currentExchItem.slice(idx+1)]
+          exchangeItems: [
+            ...currentExchItem.slice(0, idx),
+            ...currentExchItem.slice(idx+1)
+          ]
         };
       } else {
         return {

@@ -24,7 +24,7 @@ const ExhangeFieldsItem = ({
 }) => {
   useEffect(() => {
     fetchRate(currencyCode, date, bankService);
-  }, []);
+  }, [currencyCode, date, bankService, fetchRate]);
   
   if (loading) {
     return <Spinner />;

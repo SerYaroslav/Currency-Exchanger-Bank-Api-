@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { connect } from 'react-redux';
 
 import {onDateSwitched} from "../../actions";
@@ -6,77 +6,32 @@ import {onDateSwitched} from "../../actions";
 import "./date-switcher.scss";
 
 const DateSwitcher = ({ dates, onDateSwitched }) => {
-  console.log(dates)
+  
+  const itemDate = ["today", "7 days ago", "30 days ago", "1 year ago"];
+  
   return (
-    <form>
-      <div className="form-check">
-        <label>
-          <input
-            type="checkbox"
-            name="today"
-            value="today"
-            checked={dates.includes("today")}
-            onChange={changeEvent => {
-              console.log(dates);
-              onDateSwitched(changeEvent.target.value);
-            }}
-            className="form-check-input"
-          />
-          Today
-        </label>
-      </div>
-
-      <div className="form-check">
-        <label>
-          <input
-            type="checkbox"
-            name="7 days ago"
-            value="7 days ago"
-            checked={dates.includes("7 days ago")}
-            onChange={changeEvent => {
-              console.log(dates);
-              onDateSwitched(changeEvent.target.value);
-            }}
-            className="form-check-input"
-          />
-          7 days ago
-        </label>
-      </div>
-
-      <div className="form-check">
-        <label>
-          <input
-            type="checkbox"
-            name="30 days ago"
-            value="30 days ago"
-            checked={dates.includes("30 days ago")}
-            onChange={changeEvent => {
-              console.log(dates);
-              onDateSwitched(changeEvent.target.value);
-            }}
-            className="form-check-input"
-          />
-          30 days ago
-        </label>
-      </div>
-
-      <div className="form-check">
-        <label>
-          <input
-            type="checkbox"
-            name="1 year ago"
-            value="1 year ago"
-            checked={dates.includes("1 year ago")}
-            onChange={changeEvent => {
-              console.log(dates);
-              onDateSwitched(changeEvent.target.value);
-            }}
-            className="form-check-input"
-          />
-          1 year ago
-        </label>
-      </div>
-    </form>
+      itemDate.map(
+        date => {
+          return (
+            <div className="form-check" key={date}>
+              <label>
+                <input
+                  type="checkbox"
+                  name={date}
+                  value={date}
+                  checked={dates.includes(date)}
+                  onChange={changeEvent => {
+                    console.log(dates);
+                    onDateSwitched(changeEvent.target.value);
+                  }}
+                  className="form-check-input"
+                />
+                {date}
+              </label>
+            </div>
+          );
+        }
+      )
   );
 };
 
