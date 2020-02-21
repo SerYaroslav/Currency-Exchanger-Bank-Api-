@@ -15,7 +15,7 @@ const DateSwitcher = ({ dates, onDateSwitched }) => {
             type="checkbox"
             name="today"
             value="today"
-            defaultChecked={dates.includes("today")}
+            checked={dates.includes("today")}
             onChange={changeEvent => {
               console.log(dates);
               onDateSwitched(changeEvent.target.value);
@@ -32,7 +32,7 @@ const DateSwitcher = ({ dates, onDateSwitched }) => {
             type="checkbox"
             name="7 days ago"
             value="7 days ago"
-            defaultChecked={dates.includes("7 days ago")}
+            checked={dates.includes("7 days ago")}
             onChange={changeEvent => {
               console.log(dates);
               onDateSwitched(changeEvent.target.value);
@@ -49,7 +49,7 @@ const DateSwitcher = ({ dates, onDateSwitched }) => {
             type="checkbox"
             name="30 days ago"
             value="30 days ago"
-            defaultChecked={dates.includes("30 days ago")}
+            checked={dates.includes("30 days ago")}
             onChange={changeEvent => {
               console.log(dates);
               onDateSwitched(changeEvent.target.value);
@@ -66,7 +66,7 @@ const DateSwitcher = ({ dates, onDateSwitched }) => {
             type="checkbox"
             name="1 year ago"
             value="1 year ago"
-            defaultChecked={dates.includes("30 days ago")}
+            checked={dates.includes("1 year ago")}
             onChange={changeEvent => {
               console.log(dates);
               onDateSwitched(changeEvent.target.value);

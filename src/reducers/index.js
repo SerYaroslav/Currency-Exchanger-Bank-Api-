@@ -1,10 +1,10 @@
 const initialState = {
-  currencyCode: "USD",
-  dates: ["today", "7 days ago", "30 days ago"],
+  currencyCode: "",
+  dates: [],
   amount: "",
   exchangeItems: [],
   loading: true,
-  error: null
+  error: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -38,7 +38,9 @@ const reducer = (state = initialState, action) => {
     case "ON_CURRENCY_CHANGED":
       return {
         ...state,
-        currencyCode: action.payload
+        currencyCode: action.payload,
+        dates: [],
+        exchangeItems: [],
       };
 
     case "ON_AMOUNT_CHANGED":
@@ -50,16 +52,25 @@ const reducer = (state = initialState, action) => {
     case "ON_DATE_SWITCHED":
       const switchedDate = action.payload;
       const currentDates = state.dates;
+      const currentExchItem = state.exchangeItems;
       const idx = currentDates.findIndex((item) => item === switchedDate);
+      const idxExchItem = currentExchItem.findIndex(
+        item => item.settedDate === switchedDate
+      );
 
-      if (idx >= 0) {
+      if (idx >= 0 && idxExchItem >= 0) {
         return {
           ...state,
-          dates: [...currentDates.slice(0, idx), ...currentDates.slice(idx + 1)]
+          dates: [
+            ...currentDates.slice(0, idx),
+            ...currentDates.slice(idx + 1)
+          ],
+          exchangeItems: [...currentExchItem.slice(0, idxExchItem), ...currentExchItem.slice(idx+1)]
         };
       } else {
         return {
           ...state,
+          loading: true,
           dates: [...currentDates, switchedDate]
         };
       }

@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 
 import withBankService from "../hoc";
 
-import "./exchange-fields";
 import { connect } from "react-redux";
 
 import Spinner from "../spinner";
@@ -15,29 +14,42 @@ import { bindActionCreators } from "redux";
 
 const ExhangeFieldsItem = ({
   currencyCode,
-  dates,
   amount,
   exchangeItems,
   loading,
-  error
+  fetchRate,
+  bankService,
+  idx,
+  date,
 }) => {
+  useEffect(() => {
+    fetchRate(currencyCode, date, bankService);
+  }, []);
+  
+  if (loading) {
+    return <Spinner />;
+  }
+
+  let Sum = (exchangeItems[idx].rate * amount).toFixed(2);
+  const item = exchangeItems[idx];
   return (
     <div>
-      {exchangeItems[0].name},{exchangeItems[0].rate},
-      {exchangeItems[0].currencyCode},{exchangeItems[0].exchangeDate}
+      <div>{item.name}</div>
+      <div>{item.rate}</div>
+      <div>{item.currencyCode}</div>
+      <div>{item.exchangeDate}</div>
+      <div>{` Sum: ${Sum}`}</div>
     </div>
   );
 };
 
 const mapStateToProps = ({
   currencyCode,
-  dates,
   amount,
   exchangeItems,
   loading,
-  error
 }) => {
-  return { currencyCode, dates, amount, exchangeItems, loading, error };
+  return { currencyCode, amount, exchangeItems, loading };
 };
 
 const mapDispatchToProps = daspatch =>

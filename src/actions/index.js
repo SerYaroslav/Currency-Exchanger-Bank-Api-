@@ -59,9 +59,6 @@ const testFetchRate = (valcode, fromWhen, bankService) => {
           throw res.error;
         }
         dispatch(rateDataLoaded(res));
-        /* dispatch(rateDataLoaded(res.rate));
-        dispatch(rateDataLoaded(res.currencyCode)); */
-        
         return res;
       })
       .catch(error => {

@@ -58,16 +58,17 @@ export default class BankService {
   getRate = async (valcode, fromWhen, date = this.now) => {
     const dateCode = this.getDateCode(date, fromWhen);
     const data = await this.getResourse(`valcode=${valcode}&date=${dateCode}`);
-    const res = this._transformRate(data);
+    const res = this._transformRate(data, fromWhen);
     return (res);
   };
 
-  _transformRate = (rate) => {
+  _transformRate = (rate, fromWhen) => {
     return {
       name: rate[0].txt,
       rate: rate[0].rate,
       currencyCode: rate[0].cc,
-      exchangeDate: rate[0].exchangedate
+      exchangeDate: rate[0].exchangedate,
+      settedDate: fromWhen,
     };
   }
 

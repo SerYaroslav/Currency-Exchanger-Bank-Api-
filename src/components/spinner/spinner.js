@@ -2,7 +2,7 @@ import React from 'react';
 
 const Spinner = () => {
   return(
-    <h1>loading...</h1>
+    <span>loading...</span>
   )
 };
 

@@ -8,7 +8,30 @@ import './currency-switcher.scss';
 
 const CurrencySwitcher =({ onCurrencyChanged, currencyCode })=> {
     
-  return (
+
+  const currencyes = ["USD", "EUR", "GBP", "PLN"];
+  return(
+  currencyes.map(cc=>{
+    return (
+      <div className="form-check">
+        <label>
+          <input
+            type="radio"
+            name="currency"
+            value={cc}
+            onChange={changeEvent =>
+              onCurrencyChanged(changeEvent.target.value)
+            }
+            className="form-check-input"
+          />
+          {cc}
+        </label>
+      </div>
+    );
+  })
+  )
+
+  /* return (
     <form>
       <div className="form-check">
         <label>
@@ -74,7 +97,7 @@ const CurrencySwitcher =({ onCurrencyChanged, currencyCode })=> {
         </label>
       </div>
     </form>
-  );
+  ); */
 }
 
 
