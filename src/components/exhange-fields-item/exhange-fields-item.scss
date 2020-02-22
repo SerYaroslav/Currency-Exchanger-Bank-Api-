@@ -1,0 +1,15 @@
+.date-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  border-radius: 20px;
+  padding: 0 5px;
+  background-color: green;
+}
+
+.sum{
+  width: 25%;
+  justify-self: self-start;
+  text-align: left;
+}

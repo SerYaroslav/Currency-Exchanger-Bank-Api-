@@ -54,11 +54,11 @@ const reducer = (state = initialState, action) => {
       const currentDates = state.dates;
       const currentExchItem = state.exchangeItems;
       const idx = currentDates.findIndex((item) => item === switchedDate);
-      /* const idxExchItem = currentExchItem.findIndex(
+      const idxExchItem = currentExchItem.findIndex(
         item => item.settedDate === switchedDate
-      ); */
+      ); 
 
-      if (idx >= 0) {
+      if (idx >= 0 ) {
         return {
           ...state,
           dates: [
@@ -66,8 +66,8 @@ const reducer = (state = initialState, action) => {
             ...currentDates.slice(idx + 1)
           ],
           exchangeItems: [
-            ...currentExchItem.slice(0, idx),
-            ...currentExchItem.slice(idx+1)
+            ...currentExchItem.slice(0, idxExchItem),
+            ...currentExchItem.slice(idxExchItem + 1)
           ]
         };
       } else {

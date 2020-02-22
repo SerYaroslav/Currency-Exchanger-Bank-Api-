@@ -11,29 +11,30 @@ const CurrencySwitcher =({ onCurrencyChanged, currencyCode }) => {
   const currencyes = ["USD", "EUR", "GBP", "PLN"];
   
   return(
-  <form>
-    {
-      currencyes.map((cc)=>{
-        return (
-          <div className="form-check" key={cc}>
-            <label>
+    <div className="radio-wrapper">
+      {
+        currencyes.map((cc)=>{
+          return (
+            <div key={cc} className="radio-container">
               <input
                 type="radio"
+                id={cc}
                 name="currency"
                 value={cc}
                 defaultChecked={currencyCode === cc}
                 onChange={changeEvent =>
                   onCurrencyChanged(changeEvent.target.value)
                 }
-                className="form-check-input"
+                className="form-radio"
               />
-              {cc}
-            </label>
-          </div>
-        );
-      })
-    }
-  </form>
+              <label htmlFor={cc} className="form-radio-label">
+                {cc}
+              </label>
+            </div>
+          );
+        })
+      }
+    </div>
   );
 };
 

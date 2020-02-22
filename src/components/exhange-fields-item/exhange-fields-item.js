@@ -10,6 +10,8 @@ import {
   testFetchRate
 } from "../../actions";
 
+import "./exhange-fields-item.scss";
+
 import { bindActionCreators } from "redux";
 
 const ExhangeFieldsItem = ({
@@ -21,24 +23,27 @@ const ExhangeFieldsItem = ({
   bankService,
   idx,
   date,
+  dates
 }) => {
   useEffect(() => {
     fetchRate(currencyCode, date, bankService);
   }, [currencyCode, date, bankService, fetchRate]);
-  
+
   if (loading) {
     return <Spinner />;
   }
 
   let Sum = (exchangeItems[idx].rate * amount).toFixed(2);
   const item = exchangeItems[idx];
+  console.log(`items  ${exchangeItems[idx].settedDate}`);
+  console.log(`date   ${dates}`);
   return (
-    <div>
+    <div className="date-container">
       <div>{item.name}</div>
-      <div>{item.rate}</div>
+      <div>{item.rate.toFixed(3)}</div>
       <div>{item.currencyCode}</div>
       <div>{item.exchangeDate}</div>
-      <div>{` Sum: ${Sum}`}</div>
+      <div className="sum">{` Sum: ${Sum}`}</div>
     </div>
   );
 };
@@ -48,8 +53,9 @@ const mapStateToProps = ({
   amount,
   exchangeItems,
   loading,
+  dates
 }) => {
-  return { currencyCode, amount, exchangeItems, loading };
+  return { currencyCode, amount, exchangeItems, loading, dates };
 };
 
 const mapDispatchToProps = daspatch =>

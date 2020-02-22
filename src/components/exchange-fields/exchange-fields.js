@@ -2,17 +2,22 @@ import React from "react";
 
 import withBankService  from "../hoc";
 
-import './exchange-fields'
+import './exchange-fields.scss'
+
 import { connect } from 'react-redux';
 
 import ExhangeFieldsItem from "../exhange-fields-item";
 
 const ExchangeFields = ({dates}) => {
 
-  return(
-    dates.map((date, idx) => {
-      return <ExhangeFieldsItem date={date} idx={idx} key={idx} />;
-    })
+  return (
+    <div className="fields-wrapper">
+      {
+      dates.map((date, idx) => {
+        return <ExhangeFieldsItem date={date} idx={idx} key={idx} />;
+      })
+      }
+    </div>
   );
 };
 

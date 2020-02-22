@@ -10,28 +10,34 @@ const DateSwitcher = ({ dates, onDateSwitched }) => {
   const itemDate = ["today", "7 days ago", "30 days ago", "1 year ago"];
   
   return (
-      itemDate.map(
-        date => {
-          return (
-            <div className="form-check" key={date}>
-              <label>
+    <div className="check-wrapper">
+      {
+        itemDate.map(
+          date => {
+            return (
+              <div key={date} className="check-container">
                 <input
                   type="checkbox"
+                  id={date}
                   name={date}
                   value={date}
                   checked={dates.includes(date)}
                   onChange={changeEvent => {
-                    console.log(dates);
+                    
                     onDateSwitched(changeEvent.target.value);
                   }}
-                  className="form-check-input"
+                  className="form-check"
                 />
-                {date}
-              </label>
-            </div>
-          );
-        }
-      )
+
+                <label htmlFor={date} className="form-check-label">
+                  {date}
+                </label>
+              </div>
+            );
+          }
+        )
+      } 
+    </div>
   );
 };
 

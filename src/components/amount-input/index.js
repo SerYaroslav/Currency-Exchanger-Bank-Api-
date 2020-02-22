@@ -1,3 +1,3 @@
-import AmountImput from './amount-imput';
+import AmountInput from './amount-input';
 
-export default AmountImput;
+export default AmountInput;
