@@ -31,18 +31,22 @@ const ExhangeFieldsItem = ({
   }, [currencyCode, date, bankService, fetchRate]);
 
   if (loading) {
-    return <Spinner />;
+    return (
+    <div className="date-container">
+      <Spinner />
+    </div>
+    )
   }
 
-  const item = exchangeItems.filter(item => item.settedDate === date);
-  let Sum = (item[0].rate * amount).toFixed(2);
+  const item = exchangeItems.find(item => item.settedDate === date);
+  let Sum = (item.rate * amount).toFixed(2);
 
   
     return (
       <div className="date-container">
-        <div>{`Currency: ${item[0].currencyCode}`}</div>
-        <div>{`Rate: ${item[0].rate.toFixed(3)}`}</div>
-        <div>{`Date: ${item[0].exchangeDate}`}</div>
+        <div>{`Currency: ${item.currencyCode}`}</div>
+        <div>{`Rate: ${item.rate.toFixed(3)}`}</div>
+        <div>{`Date: ${item.exchangeDate}`}</div>
         <div className="sum">{` HRN: ${Sum}`}</div>
       </div>
     );
