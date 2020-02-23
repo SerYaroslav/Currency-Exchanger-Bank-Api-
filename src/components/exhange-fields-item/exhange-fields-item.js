@@ -6,9 +6,7 @@ import { connect } from "react-redux";
 
 import Spinner from "../spinner";
 
-import {
-  testFetchRate
-} from "../../actions";
+import { testFetchRate, unMountExchItem } from "../../actions";
 
 import "./exhange-fields-item.scss";
 
@@ -26,26 +24,31 @@ const ExhangeFieldsItem = ({
   dates
 }) => {
   useEffect(() => {
-    fetchRate(currencyCode, date, bankService);
+    fetchRate(currencyCode, date, bankService)
+    return function cleanup() {
+      return unMountExchItem(date);
+    };
   }, [currencyCode, date, bankService, fetchRate]);
 
   if (loading) {
     return <Spinner />;
   }
 
-  let Sum = (exchangeItems[idx].rate * amount).toFixed(2);
-  const item = exchangeItems[idx];
-  console.log(`items  ${exchangeItems[idx].settedDate}`);
+  const item = exchangeItems.filter(item => item.settedDate === date);
+  let Sum = (item[0].rate * amount).toFixed(2);
+  console.log(`items  ${exchangeItems}`);
   console.log(`date   ${dates}`);
-  return (
-    <div className="date-container">
-      <div>{item.name}</div>
-      <div>{item.rate.toFixed(3)}</div>
-      <div>{item.currencyCode}</div>
-      <div>{item.exchangeDate}</div>
-      <div className="sum">{` Sum: ${Sum}`}</div>
-    </div>
-  );
+  console.log(exchangeItems.filter(item => item.settedDate === date));
+  
+    return (
+      <div className="date-container">
+        <div>{item[0].name}</div>
+        <div>{item[0].rate.toFixed(3)}</div>
+        <div>{item[0].currencyCode}</div>
+        <div>{item[0].exchangeDate}</div>
+        <div className="sum">{` Sum: ${Sum}`}</div>
+      </div>
+    );
 };
 
 const mapStateToProps = ({
@@ -61,7 +64,8 @@ const mapStateToProps = ({
 const mapDispatchToProps = daspatch =>
   bindActionCreators(
     {
-      fetchRate: testFetchRate
+      fetchRate: testFetchRate,
+      unMountExchItem
     },
     daspatch
   );

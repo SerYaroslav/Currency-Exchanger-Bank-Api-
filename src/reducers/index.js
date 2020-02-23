@@ -3,13 +3,16 @@ const initialState = {
   dates: [],
   amount: "",
   exchangeItems: [],
-  loading: true,
+  loading: false,
   error: null,
 };
 
 const reducer = (state = initialState, action) => {
-  switch (action.type) {
+  const currentDates = state.dates;
+  const currentExchItem = state.exchangeItems;
 
+  switch (action.type) {
+    
     case "FETCH_RATE_DATA_REQUESTED":
       return{
         ...state,
@@ -20,12 +23,22 @@ const reducer = (state = initialState, action) => {
     case "FETCH_RATE_DATA_SUCCESS":
       const initExch = state.exchangeItems;
       const newExch = action.payload;
-      return {
-        ...state,
-        exchangeItems: [...initExch, newExch],
-        loading: false,
-        error: null
-      };
+      const idxExchItemTest = currentExchItem.findIndex(
+        item => item.settedDate === newExch.settedDate
+      ); 
+
+       if (idxExchItemTest >= 0){
+        return {
+          ...state,
+          loading: false
+        };
+      }
+        return {
+          ...state,
+          exchangeItems: [...initExch, newExch],
+          loading: false,
+          error: null
+        };
 
     case "FETCH_RATE_DATA_FAILURE":
       return {
@@ -49,10 +62,21 @@ const reducer = (state = initialState, action) => {
         amount: action.payload
       };
 
+    case "UNMOUNT_ITEM":
+      const unmountData = action.payload;
+      const unmountIdx = currentExchItem.findIndex(
+        item => item.settedDate === unmountData
+      );
+      return {
+        ...state,
+        exchangeItems: [
+          ...currentExchItem.slice(0, unmountIdx),
+          ...currentExchItem.slice(unmountIdx + 1)
+        ]
+      };
+
     case "ON_DATE_SWITCHED":
       const switchedDate = action.payload;
-      const currentDates = state.dates;
-      const currentExchItem = state.exchangeItems;
       const idx = currentDates.findIndex((item) => item === switchedDate);
       const idxExchItem = currentExchItem.findIndex(
         item => item.settedDate === switchedDate
@@ -65,7 +89,7 @@ const reducer = (state = initialState, action) => {
             ...currentDates.slice(0, idx),
             ...currentDates.slice(idx + 1)
           ],
-          exchangeItems: [
+           exchangeItems: [
             ...currentExchItem.slice(0, idxExchItem),
             ...currentExchItem.slice(idxExchItem + 1)
           ]

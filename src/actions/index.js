@@ -42,6 +42,13 @@ const onDateSwitched = dateName => {
   };
 }
 
+const unMountExchItem = itemData => {
+  return {
+    type: "UNMOUNT_ITEM",
+    payload: itemData
+  };
+}
+
 const fetchRateData = (bankService, dispatch) => (valcode, fromWhen) => {
   dispatch(rateDataRequested())
   bankService
@@ -74,5 +81,6 @@ export {
   fetchRateData,
   rateDataRequested,
   rateDataLoaded,
-  testFetchRate
+  testFetchRate,
+  unMountExchItem
 };

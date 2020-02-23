@@ -3,7 +3,7 @@ export default class BankService {
   _apiBase = 'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?';
 
   now = new Date();
-  today = 'today';
+  today = 'Today';
   weekAgo = '7 days ago';
   monthAgo = '30 days ago';
   yearAgo = '1 year ago';
@@ -73,8 +73,3 @@ export default class BankService {
   }
 
 };
-/* const testServ = new BankService();
-
-console.log(testServ.getRate("USD", "today"));
-console.log(testServ.getRate("PLN", "7 days ago"));
-console.log(testServ.getRate("USD", "today")); */
