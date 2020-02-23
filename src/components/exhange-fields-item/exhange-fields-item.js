@@ -36,17 +36,14 @@ const ExhangeFieldsItem = ({
 
   const item = exchangeItems.filter(item => item.settedDate === date);
   let Sum = (item[0].rate * amount).toFixed(2);
-  console.log(`items  ${exchangeItems}`);
-  console.log(`date   ${dates}`);
-  console.log(exchangeItems.filter(item => item.settedDate === date));
+
   
     return (
       <div className="date-container">
-        <div>{item[0].name}</div>
-        <div>{item[0].rate.toFixed(3)}</div>
-        <div>{item[0].currencyCode}</div>
-        <div>{item[0].exchangeDate}</div>
-        <div className="sum">{` Sum: ${Sum}`}</div>
+        <div>{`Currency: ${item[0].currencyCode}`}</div>
+        <div>{`Rate: ${item[0].rate.toFixed(3)}`}</div>
+        <div>{`Date: ${item[0].exchangeDate}`}</div>
+        <div className="sum">{` HRN: ${Sum}`}</div>
       </div>
     );
 };

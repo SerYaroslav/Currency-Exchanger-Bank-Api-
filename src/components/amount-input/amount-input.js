@@ -16,6 +16,7 @@ const AmountImput = ({ amount, onAmountChanged }) => {
         value={amount}
         className="amount-input"
         id="amount"
+        placeholder="..."
         onChange={e => {
           onAmountChanged(e.target.value);
         }}

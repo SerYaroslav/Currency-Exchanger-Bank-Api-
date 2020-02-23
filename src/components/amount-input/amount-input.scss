@@ -5,6 +5,10 @@
   border: 1px solid #2EBBDE ;
   height: 25px;
   padding: 2px 10px;
+
+  &:focus{
+    box-shadow: 0 0 3px 3px rgba(45,182,216,.3);
+  }
 }
 
 .amount-label{
