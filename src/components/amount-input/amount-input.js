@@ -9,7 +9,7 @@ const AmountImput = ({ amount, onAmountChanged }) => {
   return (
     <div className="amount-wrapper">
       <label htmlFor="amount" className="amount-label">
-        Enter the amount:
+        Enter the amount in HRN:
       </label>
       <input
         type="number"
