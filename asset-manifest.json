@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/CurrencyExchanger/static/css/main.8020e78a.chunk.css",
-    "main.js": "/CurrencyExchanger/static/js/main.fd9a3e0f.chunk.js",
-    "main.js.map": "/CurrencyExchanger/static/js/main.fd9a3e0f.chunk.js.map",
+    "main.js": "/CurrencyExchanger/static/js/main.81009709.chunk.js",
+    "main.js.map": "/CurrencyExchanger/static/js/main.81009709.chunk.js.map",
     "runtime-main.js": "/CurrencyExchanger/static/js/runtime-main.4b2fdf65.js",
     "runtime-main.js.map": "/CurrencyExchanger/static/js/runtime-main.4b2fdf65.js.map",
     "static/js/2.00ad4972.chunk.js": "/CurrencyExchanger/static/js/2.00ad4972.chunk.js",
     "static/js/2.00ad4972.chunk.js.map": "/CurrencyExchanger/static/js/2.00ad4972.chunk.js.map",
     "index.html": "/CurrencyExchanger/index.html",
-    "precache-manifest.0c45eb04ecfabe2e860c773852931c8d.js": "/CurrencyExchanger/precache-manifest.0c45eb04ecfabe2e860c773852931c8d.js",
+    "precache-manifest.3b107e6d4a23e357994327e674352afd.js": "/CurrencyExchanger/precache-manifest.3b107e6d4a23e357994327e674352afd.js",
     "service-worker.js": "/CurrencyExchanger/service-worker.js",
     "static/css/main.8020e78a.chunk.css.map": "/CurrencyExchanger/static/css/main.8020e78a.chunk.css.map",
     "static/js/2.00ad4972.chunk.js.LICENSE.txt": "/CurrencyExchanger/static/js/2.00ad4972.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.4b2fdf65.js",
     "static/js/2.00ad4972.chunk.js",
     "static/css/main.8020e78a.chunk.css",
-    "static/js/main.fd9a3e0f.chunk.js"
+    "static/js/main.81009709.chunk.js"
   ]
 }
