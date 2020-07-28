@@ -9,7 +9,7 @@ const AmountImput = ({ amount, onAmountChanged }) => {
   return (
     <div className="amount-wrapper">
       <label htmlFor="amount" className="amount-label">
-        Enter the amount in UAH:
+        Enter the amount:
       </label>
       <input
         type="number"
